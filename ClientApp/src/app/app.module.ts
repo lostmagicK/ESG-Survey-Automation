@@ -28,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
-    basePath: 'https://localhost:44398',
+    basePath: '',
     apiKeys: { 'bearer': '' }
   }
   return new Configuration(params);

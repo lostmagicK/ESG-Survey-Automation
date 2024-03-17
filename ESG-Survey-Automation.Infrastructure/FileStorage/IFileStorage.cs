@@ -9,6 +9,6 @@ namespace ESG_Survey_Automation.Infrastructure.FileStorage
 {
     public interface IFileStorage
     {
-        Task UploadFileToCloud(IFormFile file);
+        Task UploadFileToCloud(IFormFile file, string folder);
     }
 }

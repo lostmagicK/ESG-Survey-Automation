@@ -61,19 +61,40 @@ namespace ESG_Survey_Automation.Controllers
         {
             if (file == null || file.Length == 0)
             {
-                _logger.LogWarning($"File was not uploaded - Bad request");
+                _logger.LogWarning($"Question file was not uploaded - Bad request");
                 return BadRequest("No file uploaded.");
             }
             try
             {
-                await _fileStorage.UploadFileToCloud(file);
+                await _fileStorage.UploadFileToCloud(file, "SurveyQuestionair");
             }
             catch (Exception e)
             {
-                _logger.LogError(e, $"Unable to upload file to Cloud storage");
+                _logger.LogError(e, $"Unable to upload Question file to Cloud storage");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Unable to upload file please try later");
             }
-            _logger.LogInformation($"File {file.Name} was uploaded - Bad request");
+            _logger.LogInformation($"Question file {file.Name} was uploaded successfully");
+            return Ok("File uploaded successfully.");
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> UploadTraingDocument(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                _logger.LogWarning($"Training file was not uploaded - Bad request");
+                return BadRequest("No file uploaded.");
+            }
+            try
+            {
+                await _fileStorage.UploadFileToCloud(file, "TrainingDocument");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Unable to upload Training file to Cloud storage");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Unable to upload file please try later");
+            }
+            _logger.LogInformation($"Training file {file.Name} was uploaded successfully");
             return Ok("File uploaded successfully.");
         }
     }

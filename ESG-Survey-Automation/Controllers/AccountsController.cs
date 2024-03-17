@@ -96,5 +96,12 @@ namespace ESG_Survey_Automation.Controllers
             _logger.LogInformation($"User {model.Email} registered successfully");
             return Ok();
         }
+
+        [AllowAnonymous]
+        [HttpGet("[action]")]
+        public async Task<ActionResult<bool>> EmailExists(string email)
+        {
+            return Ok(await _context.Users.AnyAsync(x => x.Email == email));
+        }
     }
 }

@@ -71,7 +71,6 @@ namespace ESG_Survey_Automation.Infrastructure
             {
                 c.OAuthUsePkce();
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ESG Survey Automation V1");
-                c.OAuthClientId(_config.ClientId);
                 c.OAuthAppName("ESG Survey Automation");
                 c.OAuthScopeSeparator(" ");
                 c.OAuthScopes(["openid", "profile", "email"]);

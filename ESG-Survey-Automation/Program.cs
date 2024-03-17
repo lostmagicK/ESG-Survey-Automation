@@ -9,9 +9,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddInfrastructure();
 var app = builder.Build();
-
+app.UseCors(x => x
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 // Configure the HTTP request pipeline.
-app.UseDeveloperExceptionPage();
 
 app.UseHttpsRedirection();
 
@@ -19,8 +21,10 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseInfrastructure();
+
 app.MapControllers();
 
-app.UseInfrastructure();
+app.MapFallbackToFile("index.html");
 
 app.Run();

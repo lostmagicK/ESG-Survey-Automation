@@ -14,9 +14,9 @@ namespace ESG_Survey_Automation.Infrastructure.FileStorage
             _config = new(configuration);
             _client = StorageClient.Create();
         }
-        public async Task UploadFileToCloud(IFormFile file)
+        public async Task UploadFileToCloud(IFormFile file, string folder)
         {
-            await _client.UploadObjectAsync(_config.StorageBucket, $"{_config.Folder}/{Guid.NewGuid()}.pdf", "application/pdf", file.OpenReadStream());
+            await _client.UploadObjectAsync(_config.StorageBucket, $"{folder}/{Guid.NewGuid()}.pdf", "application/pdf", file.OpenReadStream());
         }
     }
 }

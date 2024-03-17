@@ -1,24 +1,9 @@
-﻿<h1 id="tableLabel">Weather forecast</h1>
+<mat-toolbar class="mat-elevation-z6" style="padding: 0 5%; z-index: 1000;" color="primary" fxLayoutGap="20px">
+  <a style="color: white; text-decoration: none;" href="">ESG Survey Automation</a>
+  <span class="auto-spacer"></span>
+  <span *ngIf="auth" style="border: 1px solid white; padding: 0 15px; cursor: default;">Welcome {{userName}}</span>
+  <a *ngIf="!auth" routerLink="/sign-in" mat-button>Sign-In</a>
+  <a *ngIf="auth" (click)="signOut()" mat-button>Sign-Out</a>
+</mat-toolbar>
 
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
-
-<table *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.date }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
-        </tr>
-    </tbody>
-</table>
+<router-outlet />

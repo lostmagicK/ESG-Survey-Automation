@@ -1,0 +1,37 @@
+<div fxlayout="column" fxLayoutAlign="center center">
+  <mat-card style="min-width: 500px; margin-top: 20vh;">
+    <mat-card-header>
+      <mat-card-title>Sign In</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="login-form" fxLayout="column" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter your email">
+          <mat-error *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+            <span *ngIf="f.email.errors?.required">Email is required.</span>
+            <span *ngIf="f.email.errors?.email">Invalid email format.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter your password">
+          <mat-error *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+            <span *ngIf="f.password.errors?.required">Password is required.</span>
+            <span *ngIf="f.password.errors?.minlength">Password must be at least 6 characters long.</span>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center">
+      <button mat-raised-button color="secondary" type="submit" [disabled]="loginForm.invalid || loading" (click)="onSubmit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+        Login
+      </button>
+    </mat-card-actions>
+    <mat-card-footer fxLayoutAlign="center">
+      You don't have an account? <a routerLink="/register">Register</a>
+    </mat-card-footer>
+  </mat-card>
+</div>

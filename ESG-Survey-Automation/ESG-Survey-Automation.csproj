@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ESG-Survey-Automation.Infrastructure\ESG-Survey-Automation.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,56 @@
+<div fxlayout="column" fxLayoutAlign="center center">
+  <mat-card style="min-width: 500px; margin-top: 10vh;">
+    <mat-card-header>
+      <mat-card-title>Sign Up / Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  fxLayout="column">
+        <mat-form-field appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="fullName" placeholder="Enter your full name">
+          <mat-error *ngIf="f.fullName.invalid && (f.fullName.dirty || f.fullName.touched)">
+            <span *ngIf="f.fullName.errors?.required">Full name is required.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter your email">
+          <mat-error *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)">
+            <span *ngIf="f.email.errors?.required">Email is required.</span>
+            <span *ngIf="f.email.errors?.email">Invalid email format.</span>
+            <span *ngIf="f.email.hasError('emailExists')">Email already exists.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Enter your password">
+          <mat-error *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)">
+            <span *ngIf="f.password.errors?.required">Password is required.</span>
+            <span *ngIf="f.password.errors?.minlength">Password must be at least 6 characters long.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm your password">
+          <mat-error *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)">
+            <span *ngIf="f.confirmPassword.errors?.required">Confirm password is required.</span>
+            <span *ngIf="f.confirmPassword.errors?.passwordMismatch">Passwords do not match.</span>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center">
+      <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid || loading" (click)="onSubmit()">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+        Register
+      </button>
+    </mat-card-actions>
+    <mat-card-footer fxLayoutAlign="center">
+      Already have an account? <a routerLink="/sign-in">Sign In</a>
+    </mat-card-footer>
+  </mat-card>
+</div>

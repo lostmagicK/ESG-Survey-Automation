@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESG-Survey-Automation", "ESG-Survey-Automation\ESG-Survey-Automation.csproj", "{C781F9EC-E2F2-4EAA-8A56-7E04892BB697}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESG-Survey-Automation.Domain", "ESG-Survey-Automation.Domain\ESG-Survey-Automation.Domain.csproj", "{D90B5E6B-8CBC-4214-8996-62ECE2227FE8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESG-Survey-Automation.Infrastructure", "ESG-Survey-Automation.Infrastructure\ESG-Survey-Automation.Infrastructure.csproj", "{1AA12441-E663-45EE-8E32-5637106332F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESG-Survey-Automation.UnitTests", "ESG-Survey-Automation.UnitTests\ESG-Survey-Automation.UnitTests.csproj", "{23C41537-A73C-49E8-80DE-DA4E4A638EB2}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ClientApp", "ClientApp\ClientApp.esproj", "{FFCF4C48-1576-47F4-8503-47A3023F5338}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C781F9EC-E2F2-4EAA-8A56-7E04892BB697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C781F9EC-E2F2-4EAA-8A56-7E04892BB697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C781F9EC-E2F2-4EAA-8A56-7E04892BB697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C781F9EC-E2F2-4EAA-8A56-7E04892BB697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D90B5E6B-8CBC-4214-8996-62ECE2227FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D90B5E6B-8CBC-4214-8996-62ECE2227FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D90B5E6B-8CBC-4214-8996-62ECE2227FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D90B5E6B-8CBC-4214-8996-62ECE2227FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA12441-E663-45EE-8E32-5637106332F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA12441-E663-45EE-8E32-5637106332F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA12441-E663-45EE-8E32-5637106332F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA12441-E663-45EE-8E32-5637106332F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C41537-A73C-49E8-80DE-DA4E4A638EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C41537-A73C-49E8-80DE-DA4E4A638EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C41537-A73C-49E8-80DE-DA4E4A638EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C41537-A73C-49E8-80DE-DA4E4A638EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCF4C48-1576-47F4-8503-47A3023F5338}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0836285-7233-482D-99E7-AE1EA52A07C8}
+	EndGlobalSection
+EndGlobal

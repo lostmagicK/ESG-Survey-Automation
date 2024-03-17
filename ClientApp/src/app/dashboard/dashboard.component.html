@@ -39,7 +39,7 @@
               </mat-expansion-panel>
               <mat-expansion-panel [hideToggle]="false" expanded
                 *ngFor="let citation of answer?.citations; let i = index;">
-                <mat-expansion-panel-header>Citation {{i}}</mat-expansion-panel-header>
+                <mat-expansion-panel-header>Citation {{i + 1}}</mat-expansion-panel-header>
                 <p><strong>Source:</strong> {{citation?.citationSource}} <strong>Page:</strong>
                   {{citation?.citationPageNumber}}</p>
                 <p>Citation: {{citation?.citationData}}</p>

@@ -22,9 +22,9 @@ namespace ESG_Survey_Automation.Infrastructure
             var builder = services.BuildServiceProvider();
             var conf = builder.GetService<IConfiguration>();
             services.AddDbContext<ESGSurveyContext>(o => o.UseSqlServer(conf.GetConnectionString("DefaultConnection")));
-            //GCPLoggerProvider provider = new(conf);
+            GCPLoggerProvider provider = new(conf);
             GCPConfig _config = new(conf);
-            //services.AddLogging(options => options.ClearProviders().AddProvider(provider));
+            services.AddLogging(options => options.ClearProviders().AddProvider(provider));
             services.AddSingleton<IFileStorage, GCPFileStorage>();
             services.AddAuthentication(x =>
             {

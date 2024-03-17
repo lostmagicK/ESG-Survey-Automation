@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AnswerModel, SurveyService } from '../../../build';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   constructor(private formBuilder: FormBuilder, private service: SurveyService, private snackBar: MatSnackBar, private router: Router) {
-    this.question = this.formBuilder.control({disabled: false, value: ''}, {validators: [Validators.required]});
+    this.question = this.formBuilder.control({ disabled: false, value: '' }, { validators: [Validators.required] });
   }
   loading = false;
   question: FormControl;
@@ -31,52 +31,60 @@ export class DashboardComponent {
   selectedTrainingFile: File | null = null;
   uploadQuestionAir() {
     if (!this.selectedFile) {
-      this.snackBar.open(`No file selected.`, undefined, {duration: 2000, verticalPosition: 'top'});
+      this.snackBar.open(`No file selected.`, undefined, { duration: 2000, verticalPosition: 'top' });
       return;
     }
     this.loading = true;
-    this.service.apiSurveyUploadSurveyQuestionAirPost(this.selectedFile).subscribe(
-      response => {
+    this.service.apiSurveyUploadSurveyQuestionAirPost(this.selectedFile).subscribe(data => {
         this.loading = false;
         this.selectedFile = null;
-        this.snackBar.open(`File uploaded successfully`, undefined, {duration: 2000, verticalPosition: 'top'});
+        this.snackBar.open(`File uploaded successfully`, undefined, { duration: 2000, verticalPosition: 'top' });
       },
       (err: HttpErrorResponse) => {
         this.loading = false;
-        if(err.status === 401){
+        this.selectedFile = null;
+        if (err.status === 200){
+          this.snackBar.open(`File uploaded successfully`, undefined, { duration: 2000, verticalPosition: 'top' });
+          return;
+        }
+        if (err.status === 401) {
           localStorage.clear();
           this.router.navigate(['/sign-in']);
         }
-        this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, {duration: 2000, verticalPosition: 'top'});
+        this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, { duration: 2000, verticalPosition: 'top' });
       }
     );
   }
   uploadTrainingDocument() {
     if (!this.selectedTrainingFile) {
-      this.snackBar.open(`No file selected.`, undefined, {duration: 2000, verticalPosition: 'top'});
+      this.snackBar.open(`No file selected.`, undefined, { duration: 2000, verticalPosition: 'top' });
       return;
     }
     this.loading = true;
-    this.service.apiSurveyUploadTraingDocumentPost(this.selectedTrainingFile).subscribe(
-      response => {
-        this.loading = false;
-        this.selectedTrainingFile = null;
-        this.snackBar.open(`File uploaded successfully`, undefined, {duration: 2000, verticalPosition: 'top'});
-      },
+    this.service.apiSurveyUploadTraingDocumentPost(this.selectedTrainingFile).subscribe(data => {
+      this.loading = false;
+      this.selectedTrainingFile = null;
+      this.snackBar.open(`File uploaded successfully`, undefined, { duration: 2000, verticalPosition: 'top' });
+    },
       (err: HttpErrorResponse) => {
+        this.selectedTrainingFile = null;
         this.loading = false;
-        if(err.status === 401){
+        if (err.status === 200){
+          this.snackBar.open(`File uploaded successfully`, undefined, { duration: 2000, verticalPosition: 'top' });
+          return;
+        }
+        if (err.status === 401) {
           localStorage.clear();
           this.router.navigate(['/sign-in']);
         }
-        this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, {duration: 2000, verticalPosition: 'top'});
+        this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, { duration: 2000, verticalPosition: 'top' });
       }
     );
   }
 
   askQuestion() {
     if (this.question.invalid) {
-      this.snackBar.open(`Question is required`, undefined, {duration: 2000, verticalPosition: 'top'});
+      this.snackBar.open(`Question is required`, undefined, { duration: 2000, verticalPosition: 'top' });
       return;
     }
     this.loading = true;
@@ -85,11 +93,11 @@ export class DashboardComponent {
       this.loading = false;
     }, (err: HttpErrorResponse) => {
       this.loading = false;
-      if(err.status === 401){
+      if (err.status === 401) {
         localStorage.clear();
         this.router.navigate(['/sign-in']);
       }
-      this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, {duration: 2000, verticalPosition: 'top'});
+      this.snackBar.open(`API (${err.status}) Error: ${err.error}`, undefined, { duration: 2000, verticalPosition: 'top' });
     });
   }
 }

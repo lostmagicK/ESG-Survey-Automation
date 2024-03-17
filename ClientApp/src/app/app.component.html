@@ -2,7 +2,9 @@
   <a style="color: white; text-decoration: none;" href="">ESG Survey Automation</a>
   <span class="auto-spacer"></span>
   <span *ngIf="auth" style="border: 1px solid white; padding: 0 15px; cursor: default;">Welcome {{userName}}</span>
+  <a *ngIf="auth" routerLink="/dashboard" mat-button>Dashboard</a>
   <a *ngIf="!auth" routerLink="/sign-in" mat-button>Sign-In</a>
+  <a *ngIf="!auth" routerLink="/register" mat-button>Sign-Up</a>
   <a *ngIf="auth" (click)="signOut()" mat-button>Sign-Out</a>
 </mat-toolbar>
 

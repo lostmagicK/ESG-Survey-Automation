@@ -17,13 +17,16 @@ export class AppComponent {
         if(token && token.length > 1 && !this.auth){
           this.auth = true;
           this.configuration.credentials['bearer'] = `bearer ${token}`;
+          this.userName = localStorage.getItem('userName') ?? '';
           if(['/sign-in','/sign-up'].indexOf(data.url) > -1){
             this.router.navigate(['/dashboard']);
           }
-          this.userName = localStorage.getItem('userName') ?? '';
-        } else if (this.auth){
+        } else if (this.auth && !token){
           this.auth = false;
           this.userName = '';
+          if(data.url == '/dashboard'){
+            this.router.navigate(['/sign-in']);
+          }
         }
       }
     });

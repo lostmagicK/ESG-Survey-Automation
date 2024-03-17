@@ -31,13 +31,17 @@ namespace ESG_Survey_Automation.Infrastructure.Logging
                 LogName = _logName.ToString(),
                 Timestamp = Timestamp.FromDateTimeOffset(DateTimeOffset.UtcNow),
                 InsertId = eventId.Name,
+                Severity = GetGCPSeverity(logLevel)
             };
             if (exception != null)
             {
                 logEntry.SourceLocation = LogEntrySourceLocation.Parser.ParseFrom(Encoding.ASCII.GetBytes(exception.StackTrace ?? ""));
                 logEntry.LogNameAsLogName = _logName;
-                logEntry.Severity = GetGCPSeverity(logLevel);
-                
+                logEntry.TextPayload = $"Message: {formatter}; Exception: {exception.Message}";
+            }
+            else
+            {
+                logEntry.TextPayload = $"Message: {formatter}";
             }
         }
 

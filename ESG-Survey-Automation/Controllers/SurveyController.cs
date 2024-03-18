@@ -1,9 +1,16 @@
 ﻿using ESG_Survey_Automation.Domain;
-using ESG_Survey_Automation.Infrastructure.FileStorage;
+using ESG_Survey_Automation.Infrastructure.EntityFramework;
+using ESG_Survey_Automation.Infrastructure.EntityFramework.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Data;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Newtonsoft.Json;
+using ESG_Survey_Automation.Infrastructure.FileStorage;
 
 namespace ESG_Survey_Automation.Controllers
 {
@@ -24,8 +31,9 @@ namespace ESG_Survey_Automation.Controllers
             _configuration = configuration;
         }
 
+        [ProducesResponseType(typeof(AnswerModel), 200)]
         [HttpGet("[action]")]
-        public async Task<ActionResult<AnswerModel>> AskQuestion(string question)
+        public async Task<IActionResult> AskQuestion(string question)
         {
             if (string.IsNullOrWhiteSpace(question))
             {
